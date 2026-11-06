@@ -226,7 +226,7 @@ main:focus { outline: none; }
   transform-origin: 50% 50%; will-change: transform;
 }
 .gear-big   { left: 18.75%; top: 25%;       width: 50%;   height: 54.5455%; animation: spin 40s linear infinite; }
-.gear-small { left: 57.25%; top: 11.9545%;  width: 32.5%; height: 35.4545%; animation: spin 24.4444s linear infinite reverse; }
+.gear-small { left: 58.75%; top: 11.5909%;  width: 31.6667%; height: 34.5455%; animation: spin 24.4444s linear infinite reverse; }
 .gear-small path { stroke: var(--accent-dark); }
 @keyframes spin { to { transform: rotate(360deg); } }
 .tag {
