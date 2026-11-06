@@ -219,9 +219,11 @@ main:focus { outline: none; }
 .hero-svg .dim { stroke: var(--muted); stroke-width: 1; }
 .hero-svg .dim .arrow { fill: var(--muted); stroke: none; }
 .hero-svg .dim text { fill: var(--muted); stroke: none; font: 500 13px var(--font-head); letter-spacing: .05em; }
-.gear { transform-box: fill-box; transform-origin: center; }
-.gear-big { animation: spin 40s linear infinite; }
-.gear-small { animation: spin 24.4s linear infinite reverse; }
+/* Titik putar eksplisit (koordinat viewBox) supaya rotasi stabil di semua browser.
+   Rasio kecepatan = rasio jumlah gigi (18:11) agar gigi selalu pas bertautan. */
+.gear { transform-box: view-box; }
+.gear-big { transform-origin: 210px 230px; animation: spin 40s linear infinite; }
+.gear-small { transform-origin: 358px 127px; animation: spin 24.4444s linear infinite reverse; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .tag {
   position: absolute; font-family: var(--font-head); font-size: .68rem; letter-spacing: .12em;
