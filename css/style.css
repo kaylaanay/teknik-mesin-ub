@@ -213,17 +213,21 @@ main:focus { outline: none; }
 .hero-svg { width: 100%; height: auto; overflow: visible; }
 .hero-svg g { fill: none; stroke: var(--primary); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
 .hero-svg .cl { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 14 4 2 4; opacity: .7; }
-.hero-svg .gear-small path { stroke: var(--accent-dark); }
-.hero-svg .gear-small { stroke-width: 1.5; }
 .hero-svg .piston .cyl { stroke-dasharray: 4 4; stroke: var(--muted); }
 .hero-svg .dim { stroke: var(--muted); stroke-width: 1; }
 .hero-svg .dim .arrow { fill: var(--muted); stroke: none; }
 .hero-svg .dim text { fill: var(--muted); stroke: none; font: 500 13px var(--font-head); letter-spacing: .05em; }
-/* Titik putar eksplisit (koordinat viewBox) supaya rotasi stabil di semua browser.
-   Rasio kecepatan = rasio jumlah gigi (18:11) agar gigi selalu pas bertautan. */
-.gear { transform-box: view-box; }
-.gear-big { transform-origin: 210px 230px; animation: spin 40s linear infinite; }
-.gear-small { transform-origin: 358px 127px; animation: spin 24.4444s linear infinite reverse; }
+/* Gear: <svg> terpisah yang diputar sebagai elemen HTML -> animasi di GPU, halus di HP.
+   Posisi & ukuran dihitung dari viewBox utama 480x440 (pusat gear tepat di garis sumbu).
+   Kecepatan mengikuti rasio jumlah gigi 18:11 supaya gigi selalu bertautan. */
+.gear-svg {
+  position: absolute; overflow: visible;
+  fill: none; stroke: var(--primary); stroke-width: 1.5; stroke-linejoin: round;
+  transform-origin: 50% 50%; will-change: transform;
+}
+.gear-big   { left: 18.75%; top: 25%;       width: 50%;   height: 54.5455%; animation: spin 40s linear infinite; }
+.gear-small { left: 57.25%; top: 11.9545%;  width: 32.5%; height: 35.4545%; animation: spin 24.4444s linear infinite reverse; }
+.gear-small path { stroke: var(--accent-dark); }
 @keyframes spin { to { transform: rotate(360deg); } }
 .tag {
   position: absolute; font-family: var(--font-head); font-size: .68rem; letter-spacing: .12em;
